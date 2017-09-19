@@ -9,12 +9,12 @@ const getClient = (request, response) => {
   response.end();
 };
 const getStyle = (request, response) => {
-  response.writeHead(200, { 'Content-Type':'text/css'});
+  response.writeHead(200, { 'Content-Type': 'text/css' });
   response.write(style);
   response.end();
-}
+};
 
 module.exports = {
   getClient,
   getStyle,
-}
+};
