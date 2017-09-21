@@ -6,6 +6,7 @@ const jsonHandler = require('./jsonResponses.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
+//All the different urls with their respect functions
 const urlStruct = {
   '/': htmlHandler.getClient,
   '/success': jsonHandler.success,
@@ -24,12 +25,16 @@ const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
 
   const params = query.parse(parsedUrl.query);
-
+  
   const acceptedTypes = request.headers.accept.split(',');
 
+  
+  //If the url path is defined call the apropriate function
   if (urlStruct[parsedUrl.pathname]) {
     urlStruct[parsedUrl.pathname](request, response, acceptedTypes, params);
-  } else {
+  } 
+  else {
+  //Else call not found's function
     urlStruct.notFound(request, response, acceptedTypes, params);
   }
 };

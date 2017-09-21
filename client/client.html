@@ -6,6 +6,7 @@
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
   <script type="text/babel">
+    //Handle the data we get sent
     const handleResponse = (xhr) => {      
       const type = xhr.getResponseHeader('content-type');
       
@@ -15,6 +16,7 @@
       const h1 = document.createElement('h1');
       const p = document.createElement('p');
       
+      //Based on status code change the header
       switch(xhr.status) {
         case 200:
           h1.textContent = 'Success';
@@ -39,6 +41,7 @@
           break;
         }
       
+      //Dpending on if it's json or xml grab and set the message content correctly
       if (type === 'application/json') {
         const obj = JSON.parse(xhr.response);
         p.textContent = `Message: ${obj.message}`;
@@ -51,6 +54,7 @@
       content.appendChild(p);
     };
 
+    //Standard send Ajax function using whichever url it gets passed and whatever of type of data is set
     const sendAjax = (url, acceptedType) => {
       const xhr = new XMLHttpRequest();
       
@@ -64,18 +68,23 @@
     };
 
     const init = () => {
+      //Grab the type of code test
       const pageSelect = document.querySelector('#page');
       let pageValue = pageSelect.value;
+      //update the value whenver we change it
       pageSelect.onchange = () => {
         pageValue = pageSelect.value;
       };
       
+      //Grab the type of data we want to send
       const typeSelect = document.querySelector('#type');
       let typeValue = typeSelect.value;
+      //update the value whenver we chang it
       typeSelect.onchange = () => {
         typeValue = typeSelect.value;
       };
        
+      //Add the ajax function whenever we press send
       const sendButton = document.querySelector('#send');
       const send = () => sendAjax(pageValue, typeValue);
       sendButton.addEventListener('click', send);
