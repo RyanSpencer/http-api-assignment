@@ -1,6 +1,10 @@
 {
   "name": "http-api-assignment",
   "version": "1.0.0",
+  "engines": {
+	"node": "8.4.0",
+	"npm": "5.3.0"
+  },
   "description": "Simple Status Code HTTP",
   "main": "index.js",
   "scripts": {
