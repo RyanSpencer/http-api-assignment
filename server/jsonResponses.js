@@ -1,4 +1,5 @@
-//Generic Respond function given request and response along with the status code, type of object we have, and the content type
+//Generic Respond function given request and response along with the status code,
+//type of object we have, and the content type
 const respond = (request, response, status, object, type) => {
   response.writeHead(status, { 'Content-Type': type });
   response.write(object);
